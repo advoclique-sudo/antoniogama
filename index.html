@@ -857,6 +857,19 @@ const CONFIG = {
   document.querySelectorAll('.js-wa').forEach(el=>{ el.href = base; el.target = '_blank'; el.rel = 'noopener'; });
   document.querySelectorAll('.js-tel').forEach(el=>{ el.href = 'tel:+' + CONFIG.whatsapp; });
   document.getElementById('ano').textContent = new Date().getFullYear();
+
+  /* Google Ads - conversao Contato no clique do WhatsApp (AW-18420622436) */
+  document.addEventListener('click', function(e){
+    const link = e.target.closest('a[href*="wa.me"]');
+    if (link && typeof gtag === 'function') {
+      gtag('event', 'conversion', {
+        'send_to': 'AW-18420622436/FBKOCNqJvZMdEOTI0c9E',
+        'value': 1.0,
+        'currency': 'BRL',
+        'transport_type': 'beacon'
+      });
+    }
+  });
 })();
 
 /* Cabeçalho + botão flutuante */
